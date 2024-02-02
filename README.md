@@ -1,11 +1,11 @@
 #  booking service 
 
 ## project environment
-Language: Java 17
-Type: Gradle
-Spring Boot: 3.0.0 up
-SQL: Spring Data JPA
-Database: PostgreSQL
+- Language: Java 17
+- Type: Gradle
+- Spring Boot: 3.1.2
+- SQL: Spring Data JPA
+- Database: PostgreSQL 14
 
 
 ## 測試 URL & endpoint 
