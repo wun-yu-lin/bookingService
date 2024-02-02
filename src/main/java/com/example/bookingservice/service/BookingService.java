@@ -9,7 +9,7 @@ public interface BookingService {
 
     BookingVO getBookingByIdAndMode(int bookingId, BookingMode mode) throws DataNoFoundException;
 
-    void postBooking(BookingDto bookingDto);
+    BookingVO postBooking(BookingDto bookingDto);
 
     void deleteBookingByIdAndMode(int bookingId, BookingMode mode);
 

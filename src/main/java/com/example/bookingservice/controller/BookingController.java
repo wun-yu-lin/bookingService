@@ -34,11 +34,11 @@ public class BookingController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> PostBooking(
+    public ResponseEntity<BookingVO> PostBooking(
             @RequestBody BookingDto bookingDto
     ){
-        bookingService.postBooking(bookingDto);
-        return ResponseEntity.ok("success");
+        BookingVO bookingVO =  bookingService.postBooking(bookingDto);
+        return ResponseEntity.ok(bookingVO);
     }
 
     @DeleteMapping("")

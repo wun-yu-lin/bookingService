@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 public class BookingVO {
-    BookingMode mode;
-    String cargo;
-    int quantity;
-    String from;
-    String to;
+   private int id;
+   private BookingMode mode;
+   private String cargo;
+   private int quantity;
+   private String from;
+   private String to;
 }

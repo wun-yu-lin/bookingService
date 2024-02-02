@@ -39,6 +39,7 @@ public class BookingServiceImpl implements BookingService{
                  bookingVO.setTo(airBookingModel.get().getDischarge());
                  bookingVO.setQuantity(airBookingModel.get().getQuantity());
                  bookingVO.setMode(BookingMode.air);
+                 bookingVO.setId(airBookingModel.get().getId());
              }
 
         }else if (mode == BookingMode.ocean) {
@@ -49,6 +50,7 @@ public class BookingServiceImpl implements BookingService{
                 bookingVO.setTo(oceanBookingModel.get().getDischarge());
                 bookingVO.setQuantity(oceanBookingModel.get().getQuantity());
                 bookingVO.setMode(BookingMode.ocean);
+                bookingVO.setId(oceanBookingModel.get().getId());
             }
         }
         if (bookingVO.getCargo() == null && bookingVO.getFrom() == null && bookingVO.getTo() == null){
@@ -59,7 +61,8 @@ public class BookingServiceImpl implements BookingService{
 
     @Override
     @Transactional
-    public void postBooking(BookingDto bookingDto) {
+    public BookingVO postBooking(BookingDto bookingDto) {
+        BookingVO bookingVO = new BookingVO();
 
         //判斷是哪種運輸方式, 存入對應的資料表
         if (bookingDto.getMode() == BookingMode.air){
@@ -68,8 +71,13 @@ public class BookingServiceImpl implements BookingService{
             airBookingModel.setLoading(bookingDto.getFrom());
             airBookingModel.setDischarge(bookingDto.getTo());
             airBookingModel.setQuantity(bookingDto.getQuantity());
-            airBookingRepository.save(airBookingModel);
-            airBookingRepository.flush();
+            AirBookingModel vo =  airBookingRepository.save(airBookingModel);
+            bookingVO.setId(vo.getId());
+            bookingVO.setCargo(vo.getCargo());
+            bookingVO.setFrom(vo.getLoading());
+            bookingVO.setTo(vo.getDischarge());
+            bookingVO.setQuantity(vo.getQuantity());
+            bookingVO.setMode(BookingMode.air);
 
         }else if (bookingDto.getMode() == BookingMode.ocean) {
             OceanBookingModel oceanBookingModel = new OceanBookingModel();
@@ -78,8 +86,18 @@ public class BookingServiceImpl implements BookingService{
             oceanBookingModel.setDischarge(bookingDto.getTo());
             oceanBookingModel.setQuantity(bookingDto.getQuantity());
 
-            oceanBookingRepository.save(oceanBookingModel);
+            OceanBookingModel vo =  oceanBookingRepository.save(oceanBookingModel);
+            bookingVO.setId(vo.getId());
+            bookingVO.setCargo(vo.getCargo());
+            bookingVO.setFrom(vo.getLoading());
+            bookingVO.setTo(vo.getDischarge());
+            bookingVO.setQuantity(vo.getQuantity());
+            bookingVO.setMode(BookingMode.ocean);
+
         }
+
+
+        return bookingVO;
 
     }
 
