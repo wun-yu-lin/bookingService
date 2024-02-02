@@ -5,7 +5,7 @@
 - Type: Gradle
 - Spring Boot: 3.1.2
 - SQL: Spring Data JPA
-- Database: PostgreSQL 14
+- Database: PostgreSQL 16
 
 
 ## 測試 URL & endpoint 
