@@ -32,6 +32,7 @@
 - [DELETE] http://123.241.21.121:8081/booking Delete booking by id and mode
   - para1: id, integer
   - para2: mode, string (air/ocean)
+  - example: http://123.241.21.121:8081/booking?id=1&mode=air
 
 
 ## 專案資料夾結構
